@@ -17,6 +17,7 @@
       "visual-studio-code"
       "whatsapp"
       "zed"
+      "onlyoffice"
     ];
   };
 }

@@ -36,7 +36,6 @@
       sshl  = "ssh dam@192.168.1.77";
       ssht  = "ssh dam@100.100.95.111";
 
-      # Nix
       nixb  = "sudo darwin-rebuild switch --flake ~/.config/nix#dam";
       nixu  = "nix flake update ~/.config/nix && sudo darwin-rebuild switch --flake ~/.config/nix#dam";
       nixs  = "nix search nixpkgs";
@@ -49,20 +48,11 @@
       [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
+      unalias nixrun 2>/dev/null
       nixrun() { nix run nixpkgs#$1; }
+      unalias nixtry 2>/dev/null
       nixtry() { nix shell nixpkgs#$1; }
-
-      # conda
-      __conda_setup="$('/Users/dam/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-      if [ $? -eq 0 ]; then
-          eval "$__conda_setup"
-      else
-          if [ -f "/Users/dam/miniforge3/etc/profile.d/conda.sh" ]; then
-              . "/Users/dam/miniforge3/etc/profile.d/conda.sh"
-          else
-              export PATH="/Users/dam/miniforge3/bin:$PATH"
-          fi
-      fi
+      # ...
     '';
   };
 
