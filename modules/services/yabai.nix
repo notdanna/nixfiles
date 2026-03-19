@@ -2,11 +2,12 @@
 
   services.yabai = {
   enable = true;
+  enableScriptingAddition = true;
   extraConfig = ''
     sudo yabai --load-sa
     yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-    yabai -m config external_bar all:40:0 \
+    yabai -m config external_bar all:4:0 \
       mouse_follows_focus off \
       focus_follows_mouse off \
       window_zoom_persist off \

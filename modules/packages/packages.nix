@@ -5,7 +5,7 @@
     bat
     eza
     fastfetch
-    htop
+    btop
     jq
     neovim
     ranger

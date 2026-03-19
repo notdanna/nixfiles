@@ -1,9 +1,9 @@
 { pkgs, ... }: {
 
   imports = [
-    ./packages/homebrew.nix
-    ./services/yabai.nix
-    ./services/skhd.nix
+    ./modules/packages/homebrew.nix
+    ./modules/services/yabai.nix
+    ./modules/services/skhd.nix
   ];
   
   system.primaryUser = "dam";

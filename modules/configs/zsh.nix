@@ -48,6 +48,10 @@
       [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
+      if [ -f "$HOME/miniforge3/bin/activate" ]; then
+          . "$HOME/miniforge3/etc/profile.d/conda.sh"
+      fi
+
       unalias nixrun 2>/dev/null
       nixrun() { nix run nixpkgs#$1; }
       unalias nixtry 2>/dev/null

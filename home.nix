@@ -2,9 +2,9 @@
   home.stateVersion = "24.11";
 
   imports = [
-    ./configs/zsh.nix
-    ./configs/git.nix
-    ./packages/packages.nix
+    ./modules/configs/zsh.nix
+    ./modules/configs/git.nix
+    ./modules/packages/packages.nix
   ];
 
   programs.home-manager.enable = true;
