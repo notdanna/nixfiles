@@ -26,7 +26,7 @@
       "zed"
       "onlyoffice"
       "blip"
-      "qutebrowser"
+      "pearcleaner"
     ];
   };
 }
