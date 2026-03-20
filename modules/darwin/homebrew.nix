@@ -11,7 +11,6 @@
 
     casks = [
       "discord"
-      "ghostty"
       "iina"
       "iterm2"
       "keka"
