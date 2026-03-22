@@ -13,8 +13,6 @@
     home = "/Users/dam";
   };
 
-  # Configuración compartida de Nix
-  nix.enable = false;
   nix.settings.experimental-features = "nix-command flakes";
 
   environment.systemPackages = with pkgs; [

@@ -9,8 +9,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     apple-silicon-support.url = "github:nix-community/nixos-apple-silicon";
     apple-silicon-support.inputs.nixpkgs.follows = "nixpkgs";
-    
-    # Añade el input de Zen Browser
     zen-browser.url = "github:youwen5/zen-browser-flake";
   };
 
@@ -20,7 +18,9 @@
       modules = [
         ./hosts/darwin/default.nix
         home-manager.darwinModules.home-manager {
-          home-manager.users.dam = import ./home.nix;
+          home-manager.users.dam = {
+            imports = [ ./home.nix ];
+          };
         }
       ];
     };
@@ -34,13 +34,16 @@
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.dam = import ./home.nix;
-        }
-        # Puedes añadir el paquete directamente aquí
-        {
-          environment.systemPackages = [
-            zen-browser.packages.aarch64-linux.default
-          ];
+          home-manager.users.dam = {
+            imports = [
+              ./home.nix
+              ./modules/linux/waybar.nix
+              ./modules/linux/packages.nix
+              ./modules/linux/foot.nix
+              ./modules/linux/fuzzel.nix
+              ./modules/linux/fastfetch.nix
+            ];
+          };
         }
       ];
     };

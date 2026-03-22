@@ -32,7 +32,7 @@
       cd    = "z";
       nv    = "nvim";
       cl    = "clear";
-      ff    = "fastfetch -c ~/.config/fastfetch/presets/nyarch.jsonc";
+      ff    = "fastfetch -c ~/.config/fastfetch/config.jsonc";
       sshl  = "ssh dam@192.168.1.77";
       ssht  = "ssh dam@100.100.95.111";
 

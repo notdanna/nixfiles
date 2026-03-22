@@ -1,11 +1,10 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, inputs, ... }: {
 
   imports = [
     ./hardware-configuration.nix
   ];
 
   nix.settings.experimental-features = "nix-command flakes";
-
   nixpkgs.hostPlatform = "aarch64-linux";
   nixpkgs.config.allowUnfree = true;
 
@@ -35,13 +34,15 @@
   programs.dconf.enable = true;
   programs.zsh.enable = true;
   programs.niri.enable = true;
+  services.tailscale.enable = true;
+  security.pam.services.swaylock = {};
 
   environment.systemPackages = with pkgs; [
     git
     neovim
     curl
     brightnessctl
-    waybar
+    inputs.zen-browser.packages.aarch64-linux.default
   ];
 
   environment.sessionVariables = {

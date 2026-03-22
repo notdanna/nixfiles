@@ -1,0 +1,51 @@
+{ ... }: {
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+      logo = {
+        source = "NixOS_small";
+      };
+      display = {
+        separator = " ";
+      };
+      modules = [
+        {
+          type = "title";
+          keyWidth = 10;
+        }
+        {
+          type = "custom";
+          format = "";
+        }
+        {
+          type = "os";
+          key = "~ ";
+          keyColor = "34";
+        }
+        {
+          type = "kernel";./modules/linux/fuzzel.nix
+          key = "~ ";
+          keyColor = "34";
+        }
+        {
+          type = "packages";
+          format = "{} (nix)";
+          key = "~ ";
+          keyColor = "34";
+        }
+        {
+          type = "shell";
+          key = "~ ";
+          keyColor = "34";
+        }
+        {
+          type = "wm";
+          key = "~ ";
+          keyColor = "34";
+        }
+        "break"
+      ];
+    };
+  };
+}

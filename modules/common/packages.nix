@@ -12,19 +12,5 @@
     tmux
     tree
     zoxide
-    swaybg
-    spotify-player
-    playerctl
-
-    fuzzel
-    foot
-    obsidian
-    (vscode.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-        "--disable-gpu-sandbox"
-      ];
-    })
-
   ];
 }
