@@ -9,10 +9,22 @@
     jq
     neovim
     ranger
-    ripgrep
-    starship
     tmux
     tree
     zoxide
+    foot
+    swaybg
+
+
+    alacritty
+    firefox
+    fuzzel
+    (vscode.override {
+      commandLineArgs = [
+        "--ozone-platform=wayland"
+        "--disable-gpu-sandbox"
+      ];
+    })
+
   ];
 }
