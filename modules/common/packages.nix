@@ -14,6 +14,8 @@
     zoxide
     foot
     swaybg
+    spotify-player
+    playerctl
 
 
     alacritty

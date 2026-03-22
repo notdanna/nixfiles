@@ -1,42 +1,68 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
 
   imports = [
     ./hardware-configuration.nix
   ];
 
+  nix.settings.experimental-features = "nix-command flakes";
 
-  nixpkgs.hostPlatform = "aarch64-linux"; 
-  nixpkgs.config.allowUnfree = true; 
+  nixpkgs.hostPlatform = "aarch64-linux";
+  nixpkgs.config.allowUnfree = true;
 
-  networking.networkmanager.enable = true;
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ]; 
-
-  users.users.dam = {
-    isNormalUser = true;
-    home = "/home/dam";
-    extraGroups = [ "wheel" "networkmanager" "audio" ];
-  };
-
-  environment.sessionVariables = {
-    # Fuerza a VS Code y Electron a usar Wayland
-    NIXOS_OZONE_WL = "1";
-    # Opcional: si tienes problemas de renderizado, puedes probar esto:
-    # MOZ_ENABLE_WAYLAND = "1";
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+  boot.kernelParams = [ "appledrm.show_notch=1" ];
 
   hardware.asahi = {
     setupAsahiSound = true;
     peripheralFirmwareDirectory = ./firmware;
   };
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
-  boot.kernelParams = [ "appledrm.show_notch=1" ];
 
-  # La base del sistema se mantiene igual que en macOS
-  nix.settings.experimental-features = "nix-command flakes";
-  environment.systemPackages = with pkgs; [ git neovim curl brightnessctl waybar ];
+  networking.networkmanager.enable = true;
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+
+  services.upower.enable = true;
+  services.dbus.enable = true;
+  services.power-profiles-daemon.enable = true;
+
+  users.users.dam = {
+    isNormalUser = true;
+    home = "/home/dam";
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+    shell = pkgs.zsh;
+  };
+
+  programs.dconf.enable = true;
   programs.zsh.enable = true;
   programs.niri.enable = true;
 
-  system.stateVersion = "24.11"; 
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+    curl
+    brightnessctl
+    waybar
+  ];
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = lib.mkForce [ "gtk" ];
+    config.niri.default = lib.mkForce [ "gtk" ];
+  };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    font-awesome
+  ];
+
+  system.stateVersion = "24.11";
+
 }
