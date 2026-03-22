@@ -23,7 +23,7 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 40;
+        height = 36;
         spacing = 0;
         reload_style_on_change = true;
 

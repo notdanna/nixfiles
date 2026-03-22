@@ -12,15 +12,13 @@
     tmux
     tree
     zoxide
-    foot
     swaybg
     spotify-player
     playerctl
 
-
-    alacritty
-    firefox
     fuzzel
+    foot
+    obsidian
     (vscode.override {
       commandLineArgs = [
         "--ozone-platform=wayland"
